@@ -211,7 +211,7 @@ const CalendarPage: React.FC = () => {
                                 setShowAddForm(true);
                             }}
                         >
-                            Agregar Evento
+                            Agregar Consulta
                         </Button>
                     </Box>
 
