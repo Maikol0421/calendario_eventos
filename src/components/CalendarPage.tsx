@@ -346,6 +346,37 @@ const CalendarPage: React.FC = () => {
                     </DialogActions>
                 </Dialog>
             )}
+
+            <Box sx={{ mt: 3, display: "flex", flexWrap: "wrap", gap: 2 }}>
+                {eventTypes.map((type) => (
+                    <Box
+                        key={type.value}
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 1,
+                            backgroundColor: "#f5f5f5",
+                            padding: "0.5rem 1rem",
+                            borderRadius: "8px",
+                            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                width: "20px",
+                                height: "20px",
+                                borderRadius: "4px",
+                                backgroundColor: type.color,
+                                border: "1px solid #ccc",
+                            }}
+                        ></Box>
+                        <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                            {type.tipo_evento}
+                        </Typography>
+                    </Box>
+                ))}
+            </Box>
+
         </Box>
     );
 };
