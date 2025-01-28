@@ -290,7 +290,7 @@ const CalendarPage: React.FC = () => {
                             onChange={(e) => setNewEvent({ ...newEvent, hora: e.target.value })}
                         />
                         <TextField
-                            label="Tipo de Evento"
+                            label="Citado"
                             select
                             fullWidth
                             required
