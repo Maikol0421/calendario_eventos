@@ -225,26 +225,35 @@ const CalendarPage: React.FC = () => {
                                 const clickedEvent = events.find((event) => event.id.toString() === info.event.id);
                                 if (clickedEvent) setShowEventDetails(clickedEvent);
                             }}
-                            headerToolbar={{ start: "prev,next", center: "title", end: "today" }}
-                            datesSet={() => colorizeDays()}
-                            eventContent={(info) => {
-                                return (
-                                    <div
-                                        style={{
-                                            textAlign: "center",
-                                            fontSize: "0.9rem",
-                                            fontWeight: "bold",
-                                            color: "#212121",
-                                            whiteSpace: "nowrap",
-                                            overflow: "hidden",
-                                            textOverflow: "ellipsis",
-                                        }}
-                                    >
-                                        {info.event.title}
-                                    </div>
-                                );
+                            headerToolbar={{
+                                start: "prev,next",   
+                                center: "title",   
+                                end: "today",   
                             }}
+                            buttonText={{
+                                today: "Hoy",
+                                prev: "<",
+                                next: ">",
+                            }}
+                            datesSet={() => colorizeDays()}
+                            eventContent={(info) => (
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: "0.9rem",
+                                        fontWeight: "bold",
+                                        color: "#212121",
+                                        whiteSpace: "nowrap",
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                    }}
+                                >
+                                    {info.event.title}
+                                </div>
+                            )}
+                            height="auto"
                         />
+
                     </Box>
                 </>
             )}
