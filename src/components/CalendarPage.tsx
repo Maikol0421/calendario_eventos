@@ -17,6 +17,7 @@ import {
 import Swal from "sweetalert2";
 import axios from "axios";
 import { showSuccess } from "../components/sweetalert";
+import { subscribeToNotifications } from "./subscribeToNotifications";
 
 interface Event {
     id: number;
@@ -189,34 +190,9 @@ const CalendarPage: React.FC = () => {
 
     /// NOTIFICACIONES
 
-    const subscribeUserToPush = async () => {
-        try {
-          const registration = await navigator.serviceWorker.ready;
-      
-          const subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: import.meta.env.VITE_PUBLIC_KEY_NOTIFICATION, // Asegúrate de que esta clave está en tu .env
-          });
-      
-          // Enviar la suscripción al backend
-          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/calendario/subscribe`, subscription);
-          console.log("Suscripción enviada al servidor:", subscription);
-        } catch (error) {
-          console.error("Error al suscribirse a notificaciones:", error);
-        }
-      };
-      
-      // Llamar la suscripción cuando la página cargue
-      useEffect(() => {
-        if ("Notification" in window && "serviceWorker" in navigator && "PushManager" in window) {
-          Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-              subscribeUserToPush();
-            }
-          });
-        }
-      }, []);
-      
+    useEffect(() => {
+        subscribeToNotifications(); // Se suscribe a notificaciones al cargar la página
+    }, []);
 
     return (
         <Box sx={{ minHeight: "90vh", bgcolor: "grey.100", p: 1 }}>
@@ -257,9 +233,9 @@ const CalendarPage: React.FC = () => {
                                 if (clickedEvent) setShowEventDetails(clickedEvent);
                             }}
                             headerToolbar={{
-                                start: "prev,next",   
-                                center: "title",   
-                                end: "today",   
+                                start: "prev,next",
+                                center: "title",
+                                end: "today",
                             }}
                             buttonText={{
                                 today: "Hoy",
