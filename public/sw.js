@@ -3,7 +3,7 @@ self.addEventListener("push", (event) => {
   self.registration.showNotification(data.title, {
     body: data.body,
     icon: "/calendario.ico",
-    data: { url: "https://calendario-eventos-oropeza.netlify.app/eventos" }, // 🔹 Agregar la URL aquí
+    data: { url: "https://calendario-eventos-oropeza.netlify.app" }, // 🔹 Agregar la URL aquí
   });
 });
 
